@@ -1,0 +1,30 @@
+<footer class="site-footer">
+
+  <div class="wrapper">
+    <div class="footer-col-wrapper">
+      <div class="footer-col footer-col-3">
+        <img class="avatar" src="{{"/images/mason.png" | prepend: site.baseurl}}"></img>
+        <div class="hello"> Hello! I'm Mason.</div>
+        <p>I like like simplicity, honesty, happiness and other good stuff like that. This is my blog about technical stuff and other stuff too.</p>
+        <ul class="social-media-list">
+          {% if site.github_username %}
+          <li>
+            {% include icon-github.html username=site.github_username %}
+          </li>
+          {% endif %}
+
+          {% if site.twitter_username %}
+          <li>
+            {% include icon-twitter.html username=site.twitter_username %}
+          </li>
+          <li>
+            <a href="mailto:mason@kissr.com">mason@kissr.com</a>
+          </li>
+          {% endif %}
+        </ul>
+      </div>
+    </div>
+
+  </div>
+
+</footer>
