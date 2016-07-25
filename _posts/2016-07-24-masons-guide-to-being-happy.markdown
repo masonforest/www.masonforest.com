@@ -90,7 +90,7 @@ nation in the world.” She explains that we can’t numb sadness and pain witho
 numbing happiness as well. Feeling sad is a natural part of being human. Or,
 as one of my running coaches put it: embrace the suck.
 
-Thoughtout human history we have told each other tales of true happiness. One
+Throughout human history we have told each other tales of true happiness. One
 of my favorites is The Princess Bride. Like in most fairy tales Westley and
 Buttercup live happily ever after. It’s a nice way to end the story but what
 the hell does that even mean? Does he have a job? What’s their sex life like?
