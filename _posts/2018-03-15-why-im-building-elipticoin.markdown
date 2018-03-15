@@ -139,14 +139,16 @@ lucrative as well. There’s the potential to make obscene amounts of money in t
 blockchain space right now but there’s also something much more lucrative: The
 potential to change the world.
 
-I’d been thinking a lot about Exthereum and had realized it was actually going
-to be more work finish it than it would to build my own blockchain from scratch.
-There was also a massive potential to make a more sustainable, more developer
-friendly blockchain. So that’s what I decided to do.
+I had a choice. I could build on an existing platform working on components that would eventually be scrapped or I could build something that was new and better. I had the option to build a blockchain that was both more developer friendly and more sustainable. So that’s what I decided to do.
 
 ####  Introducing Elipticoin
 
 
+Elitpicoin will be a decentralized network that runs smart contracts in the
+[WebAssembly](http://webassembly.org/) Virtual Machine. This allows developers
+to write smart contracts in any language that targets WebAssembly including
+Rust, Kotlin, C and C++ to name a few. Elipticoin forms consensus using [Proof of
+Stake](https://en.wikipedia.org/wiki/Proof-of-stake) which uses much less energy than the alternative, [Proof of Work](https://en.wikipedia.org/wiki/Proof-of-work_system)
 
 The two questions most people ask when they hear about a blockchain project are
 “where is the white paper?” and “will there be a token sale?” The answers are:
