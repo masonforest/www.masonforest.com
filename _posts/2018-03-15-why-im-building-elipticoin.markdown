@@ -167,7 +167,7 @@ to try to build something that’s perfect from the start.
 Time is also a factor. I’d much rather spend my time blogging about how
 Elitpicoin works than setting up a LaTeX editor and figuring out how to center
 my name of the cover page. I’ve written a brief overview of how the system will
-work [here](https://github.com/elipticoin/elipticoin) and I plan to write more
+work [here](https://github.com/elipticoin/elipticoin-blacksmith-node/wiki/The-Elipticoin-Protocol-Overview) and I plan to write more
 as Elipticoin develops. 
 
 
