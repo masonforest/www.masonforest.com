@@ -35,7 +35,7 @@ machine](https://themerkle.com/what-is-the-ethereum-virtual-machine/).
 Ayrat found out that [Geoff Hayes](https://twitter.com/justhhgh) was also
 working on the same idea and—surprise!—his project was also called Exthereum.
 That made three engineers that had started the same project with the same name
-in San Francisco, Moscow, and Martha’s Vineyard. Arat reached out to Geoff, we
+in San Francisco, Moscow, and Martha’s Vineyard. Ayrat reached out to Geoff, we
 merged in Geoff’s work, and we continued as a team.
 
 Geoff was also working on [Compound](https://compound.finance/), a company that
@@ -84,7 +84,7 @@ dapps.
 
 Exthereum is about 80% complete. Geoff has devp2p hooked up, which can connect
 to Geth and Parity nodes. I have a large majority of the Virtual machine tests
-passing. Arat has a fully functioning Merkle Patricia Tree and RPL encoding and
+passing. Ayrat has a fully functioning Merkle Patricia Tree and RPL encoding and
 decoding working as well. The remaining things to complete are:
 
 
