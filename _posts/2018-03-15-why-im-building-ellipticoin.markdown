@@ -1,8 +1,9 @@
 ---
 layout: post
-title:  "Why I'm building Elipticoin"
+title:  "Why I'm building Ellipticoin"
 date:   2018-03-15
 categories: blockchain ethereum
+redirect_from: "/blockchain/ethereum/2018/03/15/why-im-building-elipticoin.html"
 ---
 
 I had my blockchain moment in October 2016. That moment when you realize that
@@ -111,13 +112,13 @@ lucrative: The potential to change the world.
 
 I had a choice. I could build on an existing platform working on components that would eventually be scrapped or I could build something that was new and better. I had the option to build a blockchain that was both more developer friendly and more sustainable. So that’s what I decided to do.
 
-####  Introducing Elipticoin
+####  Introducing Ellipticoin
 
 
 Elitpicoin will be a decentralized network that runs smart contracts in the
 [WebAssembly](http://webassembly.org/) Virtual Machine. This allows developers
 to write smart contracts in any language that targets WebAssembly including
-Rust, Kotlin, C and C++ to name a few. Elipticoin forms consensus using [Proof of
+Rust, Kotlin, C and C++ to name a few. Ellipticoin forms consensus using [Proof of
 Stake](https://en.wikipedia.org/wiki/Proof-of-stake) which uses much less energy than the alternative, [Proof of Work](https://en.wikipedia.org/wiki/Proof-of-work_system)
 
 The two questions most people ask when they hear about a blockchain project are
@@ -130,15 +131,15 @@ paper they become attached to it. And when they become attached to it they adopt
 it as part of their identity. (Paul Graham wrote a great piece about [keeping
 your identity small](http://www.paulgraham.com/identity.html).) I worry that this attachment will lead people to resist
 change. Granted, some things need to to stay constant. Just like Bitcoin, there
-will only ever be 21 million Elipticoins. But, like with all software,
+will only ever be 21 million Ellipticoins. But, like with all software,
 adaptability is paramount. It’s better to build software that is adaptable than
 to try to build something that’s perfect from the start. 
 
 Time is also a factor. I’d much rather spend my time blogging about how
 Elitpicoin works than setting up a LaTeX editor and figuring out how to center
 my name of the cover page. I’ve written a brief overview of how the system will
-work [here](https://github.com/elipticoin/elipticoin-blacksmith-node/wiki/The-Elipticoin-Protocol-Overview) and I plan to write more
-as Elipticoin develops. 
+work [here](https://github.com/ellipticoin/ellipticoin-blacksmith-node/wiki/The-Ellipticoin-Protocol-Overview) and I plan to write more
+as Ellipticoin develops. 
 
 
 As far as raising money goes: when building the networks that will control the
@@ -155,19 +156,19 @@ ACLU](https://www.aclu.org/), [Planned
 Parenthood](https://www.plannedparenthood.org/) and [The International Rescue
 Committee](https://www.rescue.org/). With that said, I don’t plan on raising
 money until at least a year from now. I don’t want to raise money until
-Elipticoin is fully functional. At a certain point money can be more of a
+Ellipticoin is fully functional. At a certain point money can be more of a
 hindrance than an asset.
 
 Finally, Bob Summerwill gave a great
 [talk](https://www.youtube.com/watch?v=Yu2ReJUXIgc#t=15m25s) about ending the
 tribalism in the blockchain community at EthCC recently. I know this post will
 ruffle feathers and I’ll be attacked for posting it. People will tell me why
-Elipticoin is a bad idea and why I’m going to fail. That’s just the way the
+Ellipticoin is a bad idea and why I’m going to fail. That’s just the way the
 internet works these days.
 
 I know building a blockchain from scratch is a moonshot and chances of success
 are small. The technical part is the fun stuff, and I’ve had a blast working on
-Elipticoin for the past couple months. I’m not so much looking forward to the
+Ellipticoin for the past couple months. I’m not so much looking forward to the
 politics of it, but the promise that the blockchain holds is worth it for me. I
 hope that I can remain as cordial as possible with those who disagree with me
 and that we can work together whenever possible. If anyone is interested in

@@ -6,3 +6,5 @@ url: "http://www.masonforest.com"
 twitter_username: masonforest
 github_username:  masonforest
 markdown: kramdown
+plugins:
+  - jekyll-redirect-from
