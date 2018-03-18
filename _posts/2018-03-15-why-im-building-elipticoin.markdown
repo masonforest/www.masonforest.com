@@ -100,44 +100,14 @@ scrapped anyway. Once proof of stake is implemented, ethash will be obsolete,
 and once the EVM is replaced with the WebAssembly VM, the EVM will be, too.
 Devp2p is also going under a considerable refactor.
 
-In late December I pulled my car into the Martha’s Vineyard Public Library
-parking lot. I was staying at my parents house for the holidays and they don’t
-have high speed internet so when I take video conference calls I have to take
-them there. It was cold. When I opened my laptop I could see my breath on the
-monitor.  I tried to get comfortable in the passenger seat of my 1990 blue Jeep
-Cherokee. Geoff and I had a call scheduled with Wendell Davis from OmiseGo about
-the Ethereum Foundation Grant. We were going to hear if this grant was a dinky
-little nothing or something real. We all introduced ourselves and chatted for a
-bit. Wendell is a key player in the crypto space. He was on the original email
-list that Satoshi Nakamoto published his white paper to in 2008. Eventually,
-Geoff asked outright. 
 
-> “So how much are we talking about here?”
-
-> ..... 
-
-> “Pretty much anything you guys need”, Wendell told us.
-
-
-Again it was hard to hold a
-straight face 
-
-> “If you need to hire 5 engineers for 2 years we can work with you
-on that” he said.
-
-That’s vague but definitely not a dinky little nothing. We
-chatted for a bit more and then hung up. I called Geoff directly after that call
-to recap. I told him that I was having second thoughts and considering other
-options. He urged me to take the deal but said he supported whatever I decided
-to do.
-
-If we had taken the money from the Ethereum Dev Grants program we’d have a nice chunk
-of money in the bank and probably have been able to get Exthereum to feature
-parity with Parity and Geth. Positioning Exthereum as a first class client would
-have opened a huge amount of doors for us many of which would be financially
-lucrative as well. There’s the potential to make obscene amounts of money in the
-blockchain space right now but there’s also something much more lucrative: The
-potential to change the world.
+If we had applied for Ethereum Dev Grants program and gotten in we’d have a nice
+chunk of money in the bank and probably have been able to get Exthereum to
+feature parity with Parity and Geth. Positioning Exthereum as a first class
+client would have opened a huge amount of doors for us many of which would be
+financially lucrative as well. There’s the potential to make obscene amounts of
+money in the blockchain space right now but there’s also something much more
+lucrative: The potential to change the world.
 
 I had a choice. I could build on an existing platform working on components that would eventually be scrapped or I could build something that was new and better. I had the option to build a blockchain that was both more developer friendly and more sustainable. So that’s what I decided to do.
 
