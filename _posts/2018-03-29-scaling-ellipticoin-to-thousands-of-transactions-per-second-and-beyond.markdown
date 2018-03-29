@@ -73,9 +73,7 @@ same time extracting all information relevant to that transaction.
 code](https://github.com/ellipticoin/ellipticoin-blacksmith-node/blob/master/lib/vm.ex#L45-L59)
 looks a little funny but what it’s doing is pretty simple. Basically it’s
 matching against the transaction data and if the transaction contains a certain
-string of bytes it we know it’s a call to the “transfer” function. If that’s the
-case run the entire logic of the transfer function natively otherwise we’ll run
-the transaction in the VM.
+string of bytes then we know it’s a call to the “transfer” function. If it is, in fact, a call to the transfer function, then run the logic of the transfer function natively, otherwise, we will need to run the transaction in the external VM.
 
 
 That gave a significant improvement. Transactions ran in 1.38 milliseconds on
@@ -93,7 +91,7 @@ reading and writing to memory instead. So that’s what I did.
 
 It was actually pretty easy to switch from storing state on disk to storing it
 in memory as well. All I had to do was swap the read and write functions from
-Rocksdb to [Redis](https://redis.io/). Now you might be saying: “Mason you can’t store blockchain
+Rocksdb to [Redis](https://redis.io/). Now you might be saying: “Mason, you can’t store blockchain
 state in Redis it won’t have strong persistence guarantees.” You’d be right that
 Rocksdb has much stronger guarantees that you won’t lose data in case of a power
 outage. But if a blockchain is spread across hundreds or thousands of machines
@@ -138,10 +136,10 @@ as well. If the original smart contracts are written in Rust this shouldn’t be
 too hard though. If the node is  written in Rust it could even share the same code!
 
 I still have a long way to go on getting the Ellipticoin network up and running
-and more research to do on scaling but I’m happy to be sharing my findings. I
+and more research to do on scaling, but I’m happy to be sharing my findings. I
 think the idea of optimistic native functions are an easy way to get a big
 performance boost on commonly used transaction types at little cost. I’m still
-not sure storing blockchain state in memory is the best way to go but the
+not sure storing blockchain state in memory is the best way to go, but the
 performance gains definitely make it worth considering. I’ve also been thinking
 about having a “hot chain” that’s stored in memory that could be used for
 trading and what not and a “cold chain” that’s backed by hard drives that can be
