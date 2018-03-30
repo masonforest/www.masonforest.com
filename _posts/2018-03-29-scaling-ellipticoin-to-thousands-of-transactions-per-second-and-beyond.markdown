@@ -11,18 +11,36 @@ scale. The race for scalable blockchain infrastructure has begun. I originally
 started Ellipticoin because I didn’t like how much energy Proof of Work burns
 and I wanted to use existing tools to build smart contracts and Dapps. But I
 realize building a blockchain that scales is also desperately needed in the
-space. The Ellipticoin network isn’t live yet but I do have enough built to
-start benchmarking the Virtual Machine. This post is about how I got the
-Ellipticoin Virtual Machine to scale from 10 transactions per second (slower
-than the current iteration of the Ethereum Network) to 4 thousand transactions
+space. A transaction on any blockchain network has to go through a
+number of steps before it's confirmed. If the blockchain is programmable like in
+the case Ethereum and Ellipticoin, one of those steps is executing the
+transaction in a Virtual Machine. Making that step fast is key to building a
+scalable blockchain. The Ellipticoin network isn’t live yet but I
+do have enough built to start benchmarking the Virtual Machine. This post is
+about how I got the
+Ellipticoin Virtual Machine to scale from 10 transactions per second to 4 thousand transactions
 per second.
 
 
 The first thing I did was I set up a [simple benchmark
 test](https://github.com/ellipticoin/ellipticoin-blacksmith-node/blob/master/lib/mix/tasks/benchmark.ex#L7-L15)
 in the [Ellipticoin Blacksmith
-Node](https://github.com/ellipticoin/ellipticoin-blacksmith-node). I used
-[Benchee](https://github.com/PragTob/benchee) which runs code repeatedly for a
+Node](https://github.com/ellipticoin/ellipticoin-blacksmith-node).
+
+
+```elixir
+  def run(_) do
+    Application.ensure_all_started(:blacksmith)
+    constructor(@sender, 1000000000)
+    Benchee.run(%{
+      "base_token_transfer"    => fn -> transfer(1, @receiver) end,
+    }, time: 1)
+    {:ok, balance}  = balance(@receiver)
+    IO.puts "Receiver's balance after benchmark #{Cbor.decode(balance)}"
+  end
+```
+
+I used [Benchee](https://github.com/PragTob/benchee) which runs code repeatedly for a
 set interval of time and outputs statistics on how long each run took. The
 benchmark is pretty simple. First it loads up the “sender” with `1000000000`
 tokens. Then benchee runs the transfer function repeatedly for 1 second. Once
@@ -32,7 +50,55 @@ just to make sure they got all their tokens.
 
 The [token
 contract](https://github.com/ellipticoin/ellipticoin-base-contracts/blob/master/src/base_token.rs)
-I ran is written in Rust and compiled to WebAssembly. It does everything you’d
+I ran is written in Rust and compiled to WebAssembly.
+
+````rust
+use alloc::vec::Vec;
+use error::{self, Error};
+
+use blockchain::*;
+
+pub struct BaseToken<T: BlockChain>  {
+    pub blockchain: T
+}
+
+impl <B> BaseToken<B> where B: BlockChain {
+    pub fn constructor(&self, initial_supply: u64) {
+        self.write(self.sender(), initial_supply);
+    }
+
+    pub fn balance_of(&self, address: Vec<u8>) -> u64 {
+        self.read(&address)
+    }
+
+    pub fn transfer(&self, receiver_address: Vec<u8>, amount: u64)  -> Result<(), Error> {
+        let sender_balance = self.read(&self.sender());
+        let receiver_balance = self.read(&receiver_address);
+
+        if sender_balance > amount {
+            self.write(self.sender(), sender_balance - amount);
+            self.write(receiver_address, receiver_balance + amount);
+            Ok(())
+        } else {
+            Err(error::INSUFFIENT_FUNDS)
+        }
+    }
+
+    fn sender(&self) -> Vec<u8> {
+        self.blockchain.sender()
+    }
+
+    fn read(&self, key: &Vec<u8>) -> u64 {
+        self.blockchain.read_u64(key.to_vec())
+    }
+
+    fn write(&self, key: Vec<u8>, value: u64) {
+        self.blockchain.write_u64(key, value)
+    }
+}
+````
+
+It does everything you’d
 expect a basic token contract to do. First it checks if the sender has enough
 tokens to send. If they do it subtracts the amount from the sender's balance and
 adds it to the recipient's balance. If the sender doesn't have enough tokens it
@@ -65,6 +131,7 @@ contract look like we can intercept the calls before the VM is started and run
 the logic natively.
 
 Erlang and therefore Elixir have a fast and powerful feature called [binary
+pattern
 matching](https://hexdocs.pm/elixir/Kernel.SpecialForms.html#%3C%3C%3E%3E/1-binary-bitstring-matching).
 This was perfect for matching against only the transactions I wanted and at the
 same time extracting all information relevant to that transaction.
@@ -76,7 +143,7 @@ matching against the transaction data and if the transaction contains a certain
 string of bytes then we know it’s a call to the “transfer” function. If it is, in fact, a call to the transfer function, then run the logic of the transfer function natively, otherwise, we will need to run the transaction in the external VM.
 
 
-That gave a significant improvement. Transactions ran in 1.38 milliseconds on
+Making that change made transactions go through 70 times faster! Each one ran in 1.38 milliseconds on
 average which give us 724 runs per second.
 
 
@@ -100,12 +167,14 @@ in memory is also a concerning for centralization. Memory is much more expensive
 than disk space and it’s possible that the blockchain size gets so large that
 you wouldn’t be able to run a full node on a consumer laptop.  This is a
 tradeoff I’m willing to make. Currently you can rent a `r4.2xlarge` from AWS for
-under $400/mo which has 61 gigabytes of RAM. Stakers could also charge higher
-[rent
-fees](https://www.ethnews.com/ethereum-developers-talk-rent-fees-for-mainnet-smart-contracts)
-to offset that cost. I do want Ellipticoin to be sufficiently decentralized but
-I’m willing to make certain decentralization tradeoffs in favor for performance.
-Currently I think the decentralization tradeoff is worth it for storing state in
+under $400/mo which has 61 gigabytes of RAM. This cost would only apply to
+staking nodes which maintain consensus. Rent would be paid to the staking
+nodes to avoid the chain from perpetually growing larger. This is also [being
+considered](https://www.ethnews.com/ethereum-developers-talk-rent-fees-for-main
+net-smart-contracts) for the Ethereum network. Clients would then connect to
+edge nodes to interact with the network. I do want Ellipticoin to be sufficiently decentralized but
+I’m willing to make certain decentralization trade-offs in favor for performance.
+Currently I think the decentralization trade-off is worth it for storing state in
 memory.
 
 So how fast is?
@@ -131,9 +200,12 @@ probably be Redis. 🚀😳
 
 Note that these transaction speeds are only for optimistic native functions that
 will have to be built into the nodes. I’d imagine to start you could build in
-native functionality for all ERC20 tokens. Other native contracts could be added
-as well. If the original smart contracts are written in Rust this shouldn’t be
-too hard though. If the node is  written in Rust it could even share the same code!
+native functionality for all Ellipticoin tokens. Other native contracts could be
+added as well when needed. If, for example, a certain cat trading game exploded
+in popularity you could implement it's functionality natively in the nodes. Then
+all those transactions would be much faster and wouldn't clog the network. If the
+original smart contracts are written in Rust this shouldn’t be too hard though.
+If a node was written in Rust it could even share the same code!
 
 I still have a long way to go on getting the Ellipticoin network up and running
 and more research to do on scaling, but I’m happy to be sharing my findings. I
@@ -150,3 +222,6 @@ Telegram Room](https://t.me/joinchat/F0_SEksYp5PhexXW6dQ-9A)!
 Back to work…
 
 -M
+
+_Thanks to [Geoff Hayes](https://twitter.com/justhgh?lang=en) for editing and
+giving feedback on earlier drafts of this post._
