@@ -26,17 +26,16 @@ There are some trade-offs and optimizations that can be made to ETH 1.0 to make
 a network that scales without having to solve hard technical problems such as
 sharding and proof of stake.
 
-I think I can build Ellipticoin faster than everyone else can build Ethereum 2.0
-is because I'm not actually building much new software. Like Ethereum 2.0 I'm
+I think I can build Ellipticoin faster than everyone else can build Ethereum 2.0 because I'm not actually building much new software. Like Ethereum 2.0 I'm
 going to use an existing [WebAssembly](https://github.com/paritytech/wasmi)
 interpreter. For the consensus mechanism I’m going to use [Proof of
 Burn](http://www.masonforest.com/blockchain/ethereum/ellipticoin/2018/05/29/the-ellipticoin-proof-of-burn-algorithm.html).
-This should be much easier to implement  than Proof of Stake because the
+This should be much easier to implement than Proof of Stake because the
 economics are almost identical Proof of Work’s. I also don't plan to implement
 sharding. It's mostly just putting the pieces together.
 
 
-The goal, which I think is achievable, is to build a blockchain similar to Ethereum with the follow traits:
+The goal, which I think is achievable, is to build a blockchain similar to Ethereum with the following traits:
 
 * Runs the WebAssembly VM. This will allow Dapp developers to build smart contracts in fully featured languages like Rust. This comes with the added benefit of the rich Rust community and ecosystem.
 
@@ -85,7 +84,7 @@ wanting to enter the network. Instead I’m going to use [cross chain atomic
 swaps](https://hackernoon.com/atomic-swaps-simply-explained-how-to-swap-cryptocurrencies-without-a-middleman-6cd29680c32e)
 to move tokens from the Ethereum network to the Ellipticoin network and back.
 These also require liquidity but cross chain atomic swaps are already a proven
-technology. I want to innovate in as few  as possible places so I can focus on
+technology. I want to innovate in as few places as possible so I can focus on
 scaling and developer experience.
 
 * Moved block data into Postgres.
@@ -94,9 +93,9 @@ Originally I was storing block data (`transaction_hash`, `parent_block` etc) in 
 
 * Moved smart contract code out of memory.
 
-I chatted with [Geoff](https://github.com/hayesgm) last week and we agreed that if you’re going to use heap allocations in Rust the resulting WASM binaries are relatively large. The [simple token contract](https://github.com/ellipticoin/ellipticoin-base-contracts/blob/master/base_token/src/base_token.rs) is I wrote results in a ~27 KB wasm file. [Parity's token example](https://github.com/paritytech/pwasm-token-example) ends up being ~39K. Without heap allocations you can get the resulting binaries down to [less then 3 KB](https://kripken.github.io/blog/binaryen/2018/04/18/rust-emscripten.html). I think there are ways to optimize binary size but for now I’m planning to assume contract binaries will be at or around 100 KB.
+I chatted with [Geoff](https://github.com/hayesgm) last week and we agreed that if you’re going to use heap allocations in Rust the resulting WASM binaries are relatively large. The [simple token contract](https://github.com/ellipticoin/ellipticoin-base-contracts/blob/master/base_token/src/base_token.rs) I wrote results in a ~27 KB wasm file. [Parity's token example](https://github.com/paritytech/pwasm-token-example) ends up being ~39KB. Without heap allocations you can get the resulting binaries down to [less then 3 KB](https://kripken.github.io/blog/binaryen/2018/04/18/rust-emscripten.html). I think there are ways to optimize binary size but for now I’m planning to assume contract binaries will be at or around 100 KB.
 
-This is significant and if Ellipticoin is going to store all of it’s state in memory this could get expensive. So, instead of storing contract code in memory I’m moving it back to the disk.  When transactions come in their code can be read from disk and pushed into a queue in memory. This can be done in parallel and ahead of time since, once it’s set, smart contract code is read-only (ie you don’t need to deal with race conditions). This way only contract state will be stored in memory which should be much smaller. For example a mapping of 1,000,0000 addresses to 1,000,0000 balances stored as unsigned 64 bit integers is only around 40MB of data (((32 + 8)*1000000)/ 1000). 
+This is significant and if Ellipticoin is going to store all of its state in memory this could get expensive. So, instead of storing contract code in memory I’m moving it back to the disk.  When transactions come in their code can be read from disk and pushed into a queue in memory. This can be done in parallel and ahead of time since, once it’s set, smart contract code is read-only (ie you don’t need to deal with race conditions). This way only contract state will be stored in memory. Contract state will be much smaller. Each entry in the address -> balance map is only 40B (32-byte address + 8-byte balance) for example. 
 
 If a transaction requires another contract’s code to function that can be specified when submitting that transaction to the network.
 
@@ -128,10 +127,13 @@ Things I've been thinking about
 
 
 *  DDOS attacks/Sybil Resistance
-    * [Will](https://www.linkedin.com/in/willmeister/) gave some good feedback, pointing out that if the winning blacksmith node of each round is public that node is vulnerable to DDOS attacks. We figured that the protocol could be updated so that in each staking round the winning node determines the next winner and messages the winner directly. I also have considered a system where sending any message to a node costs a small fee. This would make DDOS attacks prohibitively expensive. There are definitely low tech solutions to this problem that can be used early on and it can iterated on as time goes on.
+    * [Will](https://www.linkedin.com/in/willmeister/) gave some good feedback, pointing out that if the winning blacksmith node of each round is public that node is vulnerable to DDOS attacks. We figured that the protocol could be updated so that in each staking round the winning node determines the next winner and messages the winner directly. This can be expanded by not only notifying the next winner but the next few potential winners. If the first winner doesn’t mine a block after a certain period of time then the next winner can and so on. I also have considered a system where sending any message to a node costs a small fee. This would make DDOS attacks prohibitively expensive. There are definitely low tech solutions to this problem that can be used early on and it can iterated on as time goes on.
 
 
 
 ---
 
 Design and development of Ellipticoin is far from perfect or done. I very much believe in iterative development and planning as a project progresses. If you have any feedback on any of these updates or ideas I’d love to hear from you! Come on by the [Ellipicoin chat](https://t.me/joinchat/F0_SEksYp5PhexXW6dQ-9A) and say hello!
+
+
+_Thanks to [Will Meister](https://twitter.com/will_meister) for giving me feedback on earlier drafts of this post._
