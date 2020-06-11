@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "Ellipticoin Mainnet to Launch June 17th"
+title:  "Ellipticoin Mainnet to Launch June 1th"
 date:   2020-06-11
 categories: blockchain ethereum ellipticoin
 ---
@@ -29,9 +29,9 @@ Of course there's dozens of other so-called "Ethereum Killers" making those
 promises, what makes Ellipticoin different? Most importantly: our funding
 mechanism. I’m not aware of any other projects that are bootstrapping without a
 pre-mine or founders reward. For a layer 1 solution to be successful the sale of
-tokens needs to be open to the public like the Ethereum and Bitcoin token sales were. The fact is that ownership of a
-blockchain isn't evenly distributed and it never will be. Power naturally
-centralizes but the illusion of ownerlessness has to be maintained. It’s not
+tokens needs to be open to the public like the Ethereum and Bitcoin token sales were. The fact is that ownership of
+blockchains isn't evenly distributed and it never will be. Power naturally
+centralizes over time. But the illusion of ownerlessness has to be maintained. It’s not
 possible to maintain that illusion through traditional fundraising mechanism
 which all of the other Eth killers are utilizing.
 
