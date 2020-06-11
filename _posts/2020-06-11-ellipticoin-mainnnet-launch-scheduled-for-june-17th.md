@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "Ellipticoin Mainnet Launch Scheduled for June 17th"
+title:  "Ellipticoin Mainnet to Launch June 17th"
 date:   2020-06-11
 categories: blockchain ethereum ellipticoin
 ---
