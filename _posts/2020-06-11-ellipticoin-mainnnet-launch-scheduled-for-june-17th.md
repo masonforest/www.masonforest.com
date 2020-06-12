@@ -12,7 +12,7 @@ In this phase we'll be launching with the minimal set of functionality so we can
 get working software into the hands of users as quickly as possible. Users will
 be able to trade Ellipticoin with Ether via Uniswap and a community-run token
 bridge. Ethereum holders can also unlock Ellipticoins via the "Trade" tab of the
-[Ellipticon wallet](https://wallet.ellipticoin.org/). In prototype Phase 1 tokens will unlock at ratio of one
+[Ellipticoin wallet](https://wallet.ellipticoin.org/). In prototype Phase 1 tokens will unlock at ratio of one
 hundred to one. This is to incentivize early adoption similar to how Bitcoin's
 halvenings are set up. This phase will be capped at 10,000 ETH/1 million EC.
 100,000 Ellipticoin and 25 ETH will be added to the Uniswap liquidity pool on
@@ -52,7 +52,7 @@ work consensus. That allowed us to elect block winners ahead of time which means
 they can process transactions in real time. For users this gives the experience
 of instant transactions that they’re used to in Web 2.0. Miners will have to
 protect themselves from DDOS attacks through traditional means which is a solved
-problem. Another tradeoff we are making is we are optimizing for miners to use
+problem. Another trade-off we are making is we are optimizing for miners to use
 cloud instances instead of running hardware themselves. While running your own
 hardware does sounds like more fun you can process a lot more transactions per
 node with powerful cloud servers. There is the argument that expensive cloud
@@ -65,17 +65,17 @@ on cloud servers or commodity hardware.
 We're also approaching development differently than Eth 2 and other
 teams.
 [Waterfall development](https://en.wikipedia.org/wiki/Waterfall_model) has been known to lead to missed deadlines and buggy
-sofware for years. Instead of writing a specification up front we're buildin
-we're using a more modern apprach and building a prototype and iterating based
+software for years. Instead of writing a specification up front we're building
+we're using a more modern approach and building a prototype and iterating based
 on user feedback.
 
 Instead of writing our own binary encoding format and networking library we're
 using existing standards like [CBOR](https://tools.ietf.org/html/rfc7049) and [HTTP](https://tools.ietf.org/html/rfc2616). This allows us to ship working
-sofware quicker than other teams.
+software quicker than other teams.
 
-We also leverge existing software like [Postgres](https://www.postgresql.org/)
+We also leverage existing software like [Postgres](https://www.postgresql.org/)
 our database and [Rust](https://www.rust-lang.org/) for our smart contract
-programming language. Spending less time reimplmenting things from scratch gives
+programming language. Spending less time reimplementing things from scratch gives
 us more time to focus on building the best possible network.
 
 Ethereum does have network effects. This is what we will working around in
@@ -88,7 +88,7 @@ first real use case will allow for people to buy sell and trade all ERC20 tokens
 instantly. This is not only a much nicer user experience but will solve for the
 front running issues seen on Uniswap. Imagine being able to convert your ETH to
 Bitcoin instantly and then sending it to someone else who can instantly convert
-it to a [Gold sythentic](https://blog.synthetix.io/chainlink-decentralizes-first-wave-of-synthetix-price-feeds/) for storage. That will all be possible in prototype phase III. And
+it to a [Gold synthetic](https://blog.synthetix.io/chainlink-decentralizes-first-wave-of-synthetix-price-feeds/) for storage. That will all be possible in prototype phase III. And
 that’s just the beginning! After the prototype phases we plan to enable full smart
 contract support and add a DAO that’s funded by miner taxes which will take
 ownership of the network.
