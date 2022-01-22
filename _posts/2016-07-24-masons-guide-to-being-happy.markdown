@@ -99,7 +99,7 @@ your father's death. It’s about battling rodents of unusual size in the fire
 swamp. It’s about storming the castle. It’s about the adventure along the way. 
 
 With your balanced happiness diet of exercise, acceptance, pain and suffering
-hopefully you and your Want Monster can get along a live a long and happy life
+hopefully you and your Want Monster can get along a live and long and happy life
 together.
 
 -M
