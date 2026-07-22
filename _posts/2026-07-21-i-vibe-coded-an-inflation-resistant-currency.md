@@ -60,5 +60,3 @@ bitcoin.dance is my own remix of that bundle: dollars as the unit of account, an
 ## Try it yourself
 
 Go to [bitcoin.dance](https://bitcoin.dance), open the hamburger menu, and hit the faucet to issue yourself a hundred bucks (testnet only, sadly). Generate a link and send five bucks to yourself. Then send some to a friend. Then send some to your grandma.
-
-PS this blog post was written by fable 5 too. Shit is about to get weird
